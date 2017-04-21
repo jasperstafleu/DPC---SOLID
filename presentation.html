@@ -5,13 +5,59 @@
     <title>Several years of SOLID development - DPC 2017</title>
 
     <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="node_modules/reveal.js/css/theme/white.css">
+    <link rel="stylesheet" href="node_modules/reveal.js/css/theme/simple.css">
+    <link rel="stylesheet" href="theme/css/developers.nl.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto%20Mono' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div class="reveal">
     <div class="slides">
-        <section>Slide 1</section>
-        <section>Slide 2</section>
+        <section>
+            <aside>
+                <h2>About me</h2>
+                <h4>Who the hell is this guy?</h4>
+            </aside>
+            <article>
+                <img src="img/jasper.jpg" style="position: absolute; right: .5em; top: .5em; border: none; border-radius: 150px;">
+                <ul>
+                    <li>Jasper Stafleu</li>
+                    <li>
+                        Developers.nl
+                        <ul>
+                            <li>
+                                Logius (Ministerie BiZa)<br/>
+                                <a href="https://mijn.overheid.nl/" target="_blank" rel="noreferrer noopener">https://mijn.overheid.nl/</a>
+                            </li>
+                            <li>
+                                Beslist.nl<br/>
+                                <a href="http://beslist.nl/" target="_blank" rel="noreferrer noopener">http://beslist.nl/</a>
+                            </li>
+                            <li>
+                                SBS<br/>
+                                <a href="http://www.kijk.nl/" target="_blank" rel="noreferrer noopener">http://www.kijk.nl/</a>
+                            </li>
+                            <li>
+                                and many others...
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        MSc Computer Science
+                    </li>
+                </ul>
+            </article>
+        </section>
+
+        <section>
+            <aside>
+                <h2>Next</h2>
+                <h4>Snide remark</h4>
+            </aside>
+            <article>
+                Random text
+            </article>
+        </section>
     </div>
 </div>
 
@@ -21,13 +67,24 @@
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
+        controls: false,
         history: true,
+        center: false,
+        transition: 'fast',
+        zoomKey: 'ctrl',
+        progress: false,
+
+        width: 1680,
+        height: 1050,
+        margin: 0,
+
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: 'plugin/markdown/marked.js' },
-            { src: 'plugin/markdown/markdown.js' },
-            { src: 'plugin/notes/notes.js', async: true },
-            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+            { src: 'node_modules/reveal.js/plugin/markdown/marked.js' },
+            { src: 'node_modules/reveal.js/plugin/markdown/markdown.js' },
+            { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true },
+            { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true}
         ]
     });
 </script>
