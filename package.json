@@ -1,11 +1,8 @@
 {
   "name": "dpc-solid",
   "version": "1.0.0",
-  "description": "Just a presentation setup",
-  "dependencies": {
-    "reveal.js": "file:reveal.js"
-  },
-  "devDependencies": {},
+  "description": "Presentation for DPC 2017",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,13 +10,23 @@
     "type": "git",
     "url": "git+https://github.com/jasperstafleu/DPC---SOLID.git"
   },
+  "keywords": [
+    "Presentation",
+    "DPC",
+    "Dutch PHP Conference",
+    "SOLID"
+  ],
   "author": {
     "name": "Jasper Stafleu",
-    "email": "j.stafleu@developers.nl"
+    "email": "j.stafleu@developers.nl",
+    "url": "http://developers.nl"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jasperstafleu/DPC---SOLID/issues"
   },
-  "homepage": "https://github.com/jasperstafleu/DPC---SOLID#readme"
+  "homepage": "https://github.com/jasperstafleu/DPC---SOLID#readme",
+  "dependencies": {
+    "reveal.js": "^3.4.1"
+  }
 }
