@@ -1,0 +1,25 @@
+{
+  "name": "dpc-solid",
+  "version": "1.0.0",
+  "description": "Just a presentation setup",
+  "dependencies": {
+    "reveal.js": "file:reveal.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasperstafleu/DPC---SOLID.git"
+  },
+  "author": {
+    "name": "Jasper Stafleu",
+    "email": "j.stafleu@developers.nl"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasperstafleu/DPC---SOLID/issues"
+  },
+  "homepage": "https://github.com/jasperstafleu/DPC---SOLID#readme"
+}
