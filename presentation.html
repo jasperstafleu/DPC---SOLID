@@ -15,7 +15,7 @@
 <body>
 <div class="reveal large-sun">
     <div id="white-pane" style="display: none;"></div>
-    <div id="clouds" class="hidden">
+    <div id="clouds">
         <div class="cloud-1"></div>
         <div class="cloud-2"></div>
     </div>
@@ -23,8 +23,10 @@
     <div class="slides">
         <section class="first-slide with-clouds">
             <article>
-                <h1>Several years of SOLID-aware development</h1>
-                <h3>Or: How other programmers keep making my work harder</h3>
+                <header>
+                    <h1>Several years of SOLID-aware development</h1>
+                    <h3>Or: How other programmers keep making my work harder</h3>
+                </header>
             </article>
         </section>
 
@@ -34,7 +36,7 @@
                 <h4>Who the hell is this guy?</h4>
             </header>
             <article>
-                <img src="assets/jasper.jpg" style="position: absolute; right: 2.5em; top: .5em; border: none; border-radius: 150px;">
+                <img src="assets/jasper.jpg" style="position: absolute; right: 2.5em; top: .5em; border: none; border-radius: 100%; height: 7em; ">
                 <ul style="line-height: 1.3;">
                     <li>Jasper Stafleu</li>
                     <li>
@@ -78,11 +80,9 @@
                 <ul class="acronym">
                     <li>Single Responsibility</li>
                     <li>Open-Closed</li>
-                    <li class="fragment replace-out" data-fragment-index="1">Liskov Substitution</li>
-                    <li class="fragment replace-in underline" data-fragment-index="1">Liskov Substitution</li>
+                    <li class="fragment underline" data-fragment-index="1">Liskov Substitution</li>
                     <li>Interface Segregation</li>
-                    <li class="fragment replace-out" data-fragment-index="1">Dependency Inversion</li>
-                    <li class="fragment replace-in underline" data-fragment-index="1">Dependency Inversion</li>
+                    <li class="fragment underline" data-fragment-index="1">Dependency Inversion</li>
                 </ul>
             </article>
         </section>
@@ -132,7 +132,7 @@
             <section class="with-clouds">
                 <article>
                     <h1>Dependency Inversion</h1>
-                    <h3>I’m not responsible for my kids actions</h3>
+                    <h3>I’m not responsible for my kids' actions</h3>
                 </article>
             </section>
 

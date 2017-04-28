@@ -8,11 +8,6 @@ ul.acronym li::first-letter
     font-weight: 700;
 }
 
-.underline {
-    text-decoration: underline;
-    text-decoration-style: dotted;
-}
-
 abbr {
     text-decoration: none;
 }

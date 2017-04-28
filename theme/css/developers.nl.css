@@ -3,16 +3,16 @@
     background-color: #4db4ff;
     background-image: url(../img/logo.svg);
     background-repeat: no-repeat;
-    background-size: 8em;
+    background-size: 33vh;
     background-position: .5em .5em;
     color: #595959;
     transition: background 1s;
 }
 
-.reveal.large-sun
+.reveal.large-sun:not(.overview)
 {
-    background-size: 90%;
-    background-position: 0 -30%;
+    background-size: 95%;
+    background-position: 0 -20%;
 }
 
 .reveal .slides > section,
@@ -32,7 +32,7 @@
     font-family: 'Roboto Mono', monospace;
 }
 
-.reveal section header
+.reveal section:not(.first-slide) header
 {
     float: left;
     height: 100vh;
@@ -91,30 +91,20 @@
     display: none;
 }
 
-.reveal .slides section .fragment.replace-out
+.reveal .slides section .fragment.underline
 {
+    display: inline-block;
+    transition: all .4s;
     opacity: 1;
     visibility: inherit;
+    width: auto;
+    border-bottom: none;
 }
 
-.reveal .slides section .fragment.replace-out.visible
+.reveal .slides section .fragment.underline.visible
 {
-    display: none;
-}
-
-.reveal .slides section .fragment.replace-in
-{
-    display: none;
-}
-
-.reveal .slides section .fragment.replace-in.visible
-{
-    display: inherit;
-}
-
-.reveal .slides .first-slide
-{
-
+    border-bottom: 3px dotted #595959;
+    height: calc(1.5em - 3px);
 }
 
 .reveal .slides article
@@ -125,11 +115,22 @@
 
 .reveal .slides .first-slide > article
 {
-    /*justify-content: flex-end;*/
     background: white;
     text-align: left;
     height: 33vh;
     margin-top: 67vh;
+    width: calc(100% + 4em);
+    transform: rotate(5deg);
+    padding: 0 2em 2em 2em;
+    position: relative;
+    left: -2em;
+
+}
+
+.reveal .slides .first-slide header
+{
+    transform: rotate(-5deg);
+    padding-left: 2em;
 }
 
 .reveal .slides .first-slide h1
@@ -140,7 +141,6 @@
 .reveal .slides .first-slide h3
 {
     font-size: 1em;
-    padding-bottom: 2em;
 }
 
 /******************************************************************************
@@ -157,11 +157,11 @@
 
 #clouds > div
 {
-    transition-property: height, opacity, transform;
+    transition-property: all;
     transition-duration: 800ms;
 }
 
-.reveal.large-sun #clouds > div
+.reveal.large-sun:not(.overview) #clouds > div
 {
     transform: scale(1.5, 1.5);
 }
@@ -191,6 +191,11 @@
     background: url(../img/cloud-1.png) no-repeat bottom;
 }
 
+.reveal.large-sun:not(.overview) #clouds .cloud-1
+{
+    left: 55%;
+}
+
 #clouds .cloud-2
 {
     position: absolute;
@@ -198,4 +203,9 @@
     height: 200px;
     width: 209px;
     background: url(../img/cloud-2.png) no-repeat bottom;
+}
+
+.reveal.large-sun:not(.overview) #clouds .cloud-2
+{
+    height: 250px;
 }
