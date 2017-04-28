@@ -5,6 +5,20 @@
     background-repeat: no-repeat;
     background-size: 8em;
     background-position: .5em .5em;
+    color: #595959;
+    transition: background 1s;
+}
+
+.reveal.large-sun
+{
+    background-size: 90%;
+    background-position: 0 -30%;
+}
+
+.reveal .slides > section,
+.reveal .slides > section > section
+{
+    line-height: 2;
 }
 
 .reveal,
@@ -18,10 +32,9 @@
     font-family: 'Roboto Mono', monospace;
 }
 
-.reveal section aside
+.reveal section header
 {
     float: left;
-
     height: 100vh;
     width: calc(50% - 2em);
     padding: 0 1em;
@@ -33,18 +46,34 @@
     flex-direction: column;
 }
 
-.reveal section aside h4,
-.reveal section aside h5,
-.reveal section aside h6
+.reveal section h3,
+.reveal section h4,
+.reveal section h5,
+.reveal section h6
 {
-    color: #595959
+    color: #595959;
 }
 
 .reveal section article
 {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.reveal section article > h1
+{
+    padding-top: 2em;
+    font-size: 3em;
+}
+
+.reveal section header + article,
+.reveal #white-pane
+{
     float: right;
     background-color: white;
-
     height: 100vh;
     width: calc(50% - 2em);
     padding: 0 1em;
@@ -55,4 +84,118 @@
     justify-content: center;
     align-content: center;
     flex-direction: column;
+}
+
+.reveal.overview #white-pane
+{
+    display: none;
+}
+
+.reveal .slides section .fragment.replace-out
+{
+    opacity: 1;
+    visibility: inherit;
+}
+
+.reveal .slides section .fragment.replace-out.visible
+{
+    display: none;
+}
+
+.reveal .slides section .fragment.replace-in
+{
+    display: none;
+}
+
+.reveal .slides section .fragment.replace-in.visible
+{
+    display: inherit;
+}
+
+.reveal .slides .first-slide
+{
+
+}
+
+.reveal .slides article
+{
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.reveal .slides .first-slide > article
+{
+    /*justify-content: flex-end;*/
+    background: white;
+    text-align: left;
+    height: 33vh;
+    margin-top: 67vh;
+}
+
+.reveal .slides .first-slide h1
+{
+    font-size: 1.5em;
+}
+
+.reveal .slides .first-slide h3
+{
+    font-size: 1em;
+    padding-bottom: 2em;
+}
+
+/******************************************************************************
+ * Cloud styles
+ *****************************************************************************/
+
+#clouds
+{
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    opacity: 1;
+}
+
+#clouds > div
+{
+    transition-property: height, opacity, transform;
+    transition-duration: 800ms;
+}
+
+.reveal.large-sun #clouds > div
+{
+    transform: scale(1.5, 1.5);
+}
+
+.reveal[data-transition-speed="fast"] #clouds > div
+{
+    transition-duration: 400ms;
+}
+
+.reveal[data-transition-speed="slow"] #clouds > div
+{
+    transition-duration: 1200ms;
+}
+
+.reveal:not(.overview) #clouds.hidden > div
+{
+    height: 0;
+    opacity: 0;
+}
+
+#clouds .cloud-1
+{
+    position: absolute;
+    left: 66%;
+    width: 155px;
+    height: 150px;
+    background: url(../img/cloud-1.png) no-repeat bottom;
+}
+
+#clouds .cloud-2
+{
+    position: absolute;
+    left: 80%;
+    height: 200px;
+    width: 209px;
+    background: url(../img/cloud-2.png) no-repeat bottom;
 }
