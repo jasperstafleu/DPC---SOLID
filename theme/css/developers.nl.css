@@ -1,7 +1,7 @@
 .reveal
 {
     background: #4db4ff url(../img/logo.svg) no-repeat fixed .5em .5em;
-    background-size: 8em;
+    background-size: auto 4em;
     color: #595959;
     transition: background 1s;
 }
@@ -24,22 +24,23 @@ html, body, .reveal, .reveal div, .reveal span, .reveal applet, .reveal object, 
     line-height: 2;
 }
 
-.reveal h1 { font-size: 3em; }
-.reveal h2 { font-size: 2.5em; }
-.reveal h3 { font-size: 1.7em; }
-.reveal h4 { font-size: 1em; }
-.reveal h5 { font-size: .7em; }
-.reveal h6 { font-size: .5em; }
-
-.reveal section h3,
-.reveal section h4,
-.reveal section h5,
-.reveal section h6
+.reveal small
 {
     color: #595959;
 }
 
-.reveal section:not(.first-slide) header
+.reveal h1 + small { font-size: 1.7em; }
+.reveal h2 + small { font-size: 1em; }
+.reveal h3 + small { font-size: 1em; }
+
+.reveal h1 { font-size: 3em; }
+.reveal h2 { font-size: 2.5em; }
+.reveal h3 { font-size: 2.5em; }
+.reveal h4 { font-size: 1.7em; }
+.reveal h5 { font-size: 1em; }
+.reveal h6 { font-size: .7em; }
+
+.reveal section:not(.first-slide) > header
 {
     float: left;
     height: 100vh;
@@ -62,9 +63,16 @@ html, body, .reveal, .reveal div, .reveal span, .reveal applet, .reveal object, 
     flex-direction: column;
 }
 
-.reveal section article > h1
+.reveal article > header > h2,
+.reveal article > header > h3
 {
     padding-top: 2em;
+    font-size: 3em;
+}
+.reveal article > header > h2 + small,
+.reveal article > header > h3 + small
+{
+    font-size: 1.7em;
 }
 
 .reveal section header + article,
@@ -137,7 +145,7 @@ html, body, .reveal, .reveal div, .reveal span, .reveal applet, .reveal object, 
 
 .reveal.large-sun:not(.overview)
 {
-    background-size: 95%;
+    background-size: auto 50vw;
     background-position: 0 -20%;
 }
 
@@ -166,9 +174,15 @@ html, body, .reveal, .reveal div, .reveal span, .reveal applet, .reveal object, 
     font-size: 1.5em;
 }
 
-.reveal .slides .first-slide h3
+.reveal .slides .first-slide h1 + small
 {
     font-size: 1em;
+    margin-top: .55em;
+}
+
+.reveal ul ul, .reveal ul ol, .reveal ol ol, .reveal ol ul
+{
+    margin-left: 1em;
 }
 
 /******************************************************************************
