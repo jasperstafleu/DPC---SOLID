@@ -217,7 +217,7 @@ html, body, .reveal, .reveal div, .reveal span, .reveal applet, .reveal object, 
     width: 4em;
     height: 4em;
     background: url(../img/cloud-1.png) no-repeat bottom;
-    background-size: cover;
+    background-size: 100% auto;
 }
 
 .reveal.large-sun:not(.overview) #clouds .cloud-1
@@ -232,7 +232,7 @@ html, body, .reveal, .reveal div, .reveal span, .reveal applet, .reveal object, 
     height: 5em;
     width: 5em;
     background: url(../img/cloud-2.png) no-repeat bottom;
-    background-size: cover;
+    background-size: 100% auto;
 }
 
 .reveal.large-sun:not(.overview) #clouds .cloud-2
@@ -306,11 +306,6 @@ html, body, .reveal, .reveal div, .reveal span, .reveal applet, .reveal object, 
 /******************************************************************************
  * Progress bar
  *****************************************************************************/
-.reveal .progress
-{
-    background: rgba(0, 0, 0, 0.2);
-}
-
 .reveal .progress span
 {
     background: rgba(241, 122, 22, 1);
