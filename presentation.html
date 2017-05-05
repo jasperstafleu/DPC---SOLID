@@ -42,9 +42,7 @@
                 </figure>
                 <ul style="line-height: 1.3;">
                     <li>Jasper Stafleu</li>
-                    <li>
-                        MSc Computer Science
-                    </li>
+                    <li>MSc Computer Science</li>
                     <li>
                         Developers.nl
                         <ul>
@@ -78,9 +76,9 @@
                 <ul class="acronym">
                     <li>Single Responsibility</li>
                     <li>Open-Closed</li>
-                    <li class="fragment underline" data-fragment-index="1">Liskov Substitution</li>
+                    <li><mark class="fragment" data-fragment-index="1">Liskov Substitution</mark></li>
                     <li>Interface Segregation</li>
-                    <li class="fragment underline" data-fragment-index="1">Dependency Inversion</li>
+                    <li><mark class="fragment" data-fragment-index="1">Dependency Inversion</mark></li>
                 </ul>
             </article>
             <aside class="notes">
@@ -232,7 +230,7 @@ class Origami
             <section>
                 <header>
                     <h2>Joind.In</h2>
-                    <h4>Act as if I care</h4>
+                    <h4>Remember: Act as if I care</h4>
                 </header>
                 <article>
                     <a href="?">Room for joind.in link...</a>
@@ -250,9 +248,13 @@ class Origami
     // More info https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
         controls: false,
+        progress: false,
+        slideNumber: false,
         history: true,
-        center: false,
+        center: true,
+        embedded: false,
         backgroundTransition: 'none',
+        mouseWheel: false,
 //        transition: 'none', // none/fade/slide/convex/concave/zoom
 //        transition: 'fade', // none/fade/slide/convex/concave/zoom
 //        transition: 'slide', // none/fade/slide/convex/concave/zoom
@@ -261,7 +263,6 @@ class Origami
         transition: 'zoom', // none/fade/slide/convex/concave/zoom
 
         zoomKey: 'ctrl',
-        progress: false,
 
         width: '100%',
         height: '100%',
