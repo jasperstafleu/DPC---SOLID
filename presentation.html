@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
     <link rel="stylesheet" href="node_modules/reveal.js/css/theme/simple.css">
     <link rel="stylesheet" href="theme/css/developers.nl.css">
+    <link rel="stylesheet" href="node_modules/highlight.js/styles/github.css">
 
     <link rel="stylesheet" href="assets/style.css">
 
@@ -36,9 +37,14 @@
                 <h4>Who the hell is this guy?</h4>
             </header>
             <article>
-                <img src="assets/jasper.jpg" style="position: absolute; right: 2.5em; top: .5em; border: none; border-radius: 100%; height: 7em; ">
+                <figure class="jasper-logo">
+                    <img src="assets/jasper.jpg">
+                </figure>
                 <ul style="line-height: 1.3;">
                     <li>Jasper Stafleu</li>
+                    <li>
+                        MSc Computer Science
+                    </li>
                     <li>
                         Developers.nl
                         <ul>
@@ -59,16 +65,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        MSc Computer Science
-                    </li>
                 </ul>
             </article>
-            <aside class="speaker-notes">
-                <ul>
-                    <li>Notes!</li>
-                </ul>
-            </aside>
         </section>
 
         <section>
@@ -85,6 +83,12 @@
                     <li class="fragment underline" data-fragment-index="1">Dependency Inversion</li>
                 </ul>
             </article>
+            <aside class="notes">
+                <ul>
+                    <li>SOLID is about behavior, not coding per se</li>
+                    <li>Reusability and maintainability of code</li>
+                </ul>
+            </aside>
         </section>
 
         <section class="with-clouds">
@@ -92,6 +96,12 @@
                 <h1>Single Responsibility</h1>
                 <h3>My precioussss...</h3>
             </article>
+            <aside class="notes">
+                <ul>
+                    <li>Responsibility goes two ways!!!</li>
+                    <li>PHP: Mostly done OK, easy to spot if not</li>
+                </ul>
+            </aside>
         </section>
 
         <section class="with-clouds">
@@ -99,6 +109,12 @@
                 <h1>Interface Segregation</h1>
                 <h3>Interfaces have responsibilities as well. Really!</h3>
             </article>
+            <aside class="notes">
+                <ul>
+                    <li>Single responsibility for interfaces</li>
+                    <li>PHP: Rarely done right</li>
+                </ul>
+            </aside>
         </section>
 
         <section class="with-clouds">
@@ -107,6 +123,22 @@
                 <h3>Don’t touch me!<br/>
                     Let’s make kids instead</h3>
             </article>
+            <aside class="speaker-notes">
+                <h3>Closed</h3>
+                <ul>
+                    <li>PHP: Used to be a problem, until the rise of composer</li>
+                </ul>
+                <h3>Open</h3>
+                <ul>
+                    <li>Mainly a problem for library code</li>
+                    <li>PHP: Often a problem
+                        <ul>
+                            <li>Doctrine Query object</li>
+                            <li>NewRelic automagic symfony2 interpretation</li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
         </section>
 
         <section>
@@ -119,11 +151,53 @@
 
             <section>
                 <header>
-                    <h2>Other stuff</h2>
+                    <h2>Example</h2>
                 </header>
                 <article>
-                    Text
+                    <pre><code class="php" data-trim data-noescape>
+class Paper
+{
+    // ...
+}
+
+class Cardboard extends Paper
+{
+    // ...
+}
+
+class Origami
+{
+    /**
+     * Magically transforms a piece of paper into a
+     * jumbo jet
+     *
+     * @param Paper $paper
+     * @return JumboJet
+     */
+    <mark class="fragment">public function makeAirplane(Paper $paper)</mark>
+    {
+        // ...
+    }
+}
+
+(new Origami)->makeAirplane(new Cardboard);
+                    </code></pre>
                 </article>
+            </section>
+
+            <section>
+                <header>
+                    <h1></h1>
+                    <h3></h3>
+                </header>
+                <article>
+                    ?
+                </article>
+                <aside class="speaker-notes">
+                    <ul>
+                        <li>RabbitMQ and atomicity in single queue</li>
+                    </ul>
+                </aside>
             </section>
         </section>
 
@@ -179,7 +253,13 @@
         history: true,
         center: false,
         backgroundTransition: 'none',
+//        transition: 'none', // none/fade/slide/convex/concave/zoom
+//        transition: 'fade', // none/fade/slide/convex/concave/zoom
+//        transition: 'slide', // none/fade/slide/convex/concave/zoom
+//        transition: 'convex', // none/fade/slide/convex/concave/zoom
+//        transition: 'concave', // none/fade/slide/convex/concave/zoom
         transition: 'zoom', // none/fade/slide/convex/concave/zoom
+
         zoomKey: 'ctrl',
         progress: false,
 
@@ -189,8 +269,6 @@
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: 'node_modules/reveal.js/plugin/markdown/marked.js' },
-            { src: 'node_modules/reveal.js/plugin/markdown/markdown.js' },
             { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true },
             { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
             { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true}

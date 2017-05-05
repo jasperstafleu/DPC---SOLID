@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/jasperstafleu/DPC---SOLID#readme",
   "dependencies": {
-    "reveal.js": "^3.4.1"
+    "reveal.js": "^3.4.1",
+    "highlight.js": "^9.11.0"
   }
 }

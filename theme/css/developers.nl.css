@@ -1,19 +1,17 @@
 .reveal
 {
-    background-color: #4db4ff;
-    background-image: url(../img/logo.svg);
-    background-repeat: no-repeat;
+    background: #4db4ff url(../img/logo.svg) no-repeat fixed .5em .5em;
     background-size: 33vh;
-    background-position: .5em .5em;
     color: #595959;
     transition: background 1s;
 }
 
-.reveal.large-sun:not(.overview)
+html, body, .reveal div, .reveal span, .reveal applet, .reveal object, .reveal iframe, .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .reveal p, .reveal blockquote, .reveal pre, .reveal a, .reveal abbr, .reveal acronym, .reveal address, .reveal big, .reveal cite, .reveal code, .reveal del, .reveal dfn, .reveal em, .reveal img, .reveal ins, .reveal kbd, .reveal q, .reveal s, .reveal samp, .reveal small, .reveal strike, .reveal strong, .reveal sub, .reveal sup, .reveal tt, .reveal var, .reveal b, .reveal u, .reveal center, .reveal dl, .reveal dt, .reveal dd, .reveal ol, .reveal ul, .reveal li, .reveal fieldset, .reveal form, .reveal label, .reveal legend, .reveal table, .reveal caption, .reveal tbody, .reveal tfoot, .reveal thead, .reveal tr, .reveal th, .reveal td, .reveal article, .reveal aside, .reveal canvas, .reveal details, .reveal embed, .reveal figure, .reveal figcaption, .reveal footer, .reveal header, .reveal hgroup, .reveal menu, .reveal nav, .reveal output, .reveal ruby, .reveal section, .reveal summary, .reveal time, .reveal mark, .reveal audio, .reveal video
 {
-    background-size: 95%;
-    background-position: 0 -20%;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2.4vw;
 }
+
 
 .reveal .slides > section,
 .reveal .slides > section > section
@@ -21,15 +19,19 @@
     line-height: 2;
 }
 
-.reveal,
-.reveal h1,
-.reveal h2,
-.reveal h3,
-.reveal h4,
-.reveal h5,
-.reveal h6
+.reveal h1 { font-size: 3em; }
+.reveal h2 { font-size: 2.5em; }
+.reveal h3 { font-size: 1.7em; }
+.reveal h4 { font-size: 1em; }
+.reveal h5 { font-size: .7em; }
+.reveal h6 { font-size: .5em; }
+
+.reveal section h3,
+.reveal section h4,
+.reveal section h5,
+.reveal section h6
 {
-    font-family: 'Roboto Mono', monospace;
+    color: #595959;
 }
 
 .reveal section:not(.first-slide) header
@@ -46,14 +48,6 @@
     flex-direction: column;
 }
 
-.reveal section h3,
-.reveal section h4,
-.reveal section h5,
-.reveal section h6
-{
-    color: #595959;
-}
-
 .reveal section article
 {
     height: 100vh;
@@ -66,7 +60,6 @@
 .reveal section article > h1
 {
     padding-top: 2em;
-    font-size: 3em;
 }
 
 .reveal section header + article,
@@ -107,10 +100,40 @@
     height: calc(1.5em - 3px);
 }
 
+.reveal .slides section mark.fragment
+{
+    transition: all .8s;
+    opacity: 1;
+    visibility: inherit;
+    background-color: transparent;
+}
+
+.reveal .slides section mark.fragment.visible
+{
+    background-color: rgba(255, 255, 0, 1);
+    animation-name: glow;
+    animation-duration: 2s;
+}
+
+@keyframes glow {
+    0%   { background-color: rgba(255, 255, 0, 0); }
+    20%  { background-color: rgba(255, 255, 0, 1); }
+    40%  { background-color: rgba(255, 255, 0, 0.2); }
+    60%  { background-color: rgba(255, 255, 0, 1); }
+    80%  { background-color: rgba(255, 255, 0, 0.2); }
+    100% { background-color: rgba(255, 255, 0, 1); }
+}
+
 .reveal .slides article
 {
     padding-left: 2em;
     padding-right: 2em;
+}
+
+.reveal.large-sun:not(.overview)
+{
+    background-size: 95%;
+    background-position: 0 -20%;
 }
 
 .reveal .slides .first-slide > article
@@ -186,9 +209,10 @@
 {
     position: absolute;
     left: 66%;
-    width: 155px;
-    height: 150px;
+    width: 4em;
+    height: 4em;
     background: url(../img/cloud-1.png) no-repeat bottom;
+    background-size: cover;
 }
 
 .reveal.large-sun:not(.overview) #clouds .cloud-1
@@ -200,12 +224,29 @@
 {
     position: absolute;
     left: 80%;
-    height: 200px;
-    width: 209px;
+    height: 5em;
+    width: 5em;
     background: url(../img/cloud-2.png) no-repeat bottom;
+    background-size: cover;
 }
 
 .reveal.large-sun:not(.overview) #clouds .cloud-2
 {
-    height: 250px;
+    height: 6em;
+}
+
+/******************************************************************************
+ * Code styles
+ *****************************************************************************/
+
+.reveal code,
+.reveal code *
+{
+    font-size: 1.2vw;
+    line-height: 1.5em;
+}
+
+.reveal pre code
+{
+    max-height: 80vh;
 }

@@ -2,24 +2,39 @@
     /**
      * Construct the components.
      */
-    new WhitePane($);
     new Clouds($);
     new Sun($);
+
+    $.addEventListener('ready', function () {
+        new WhitePane($);
+    });
 
     /**
      * White pane ensures the white pane in some slides transitions properly.
      *
      * @constructor
      */
-    function WhitePane() {
-        let displayWhitePane = document.getElementById('white-pane').style.display !== 'none';
+    function WhitePane($) {
+        const transitionsRequiringWhitePane = ['fade', 'zoom']; // Not: 'none', 'slide', 'convex', 'concave'
+
+        // TODO: Inject white pane when required.
         let whitePane = document.getElementById('white-pane');
+
+        if (transitionsRequiringWhitePane.indexOf($.getConfig().transition) === -1) {
+            // Only these transition schemes require a white-pane. Ignore this
+            // component in all other cases
+            if (whitePane) whitePane.style.display = 'none';
+
+            return;
+        }
 
         if (!whitePane) {
             console.error('No white-pane detected. Skipping');
 
             return;
         }
+
+        let displayWhitePane = whitePane.style.display !== 'none';
 
         $.addEventListener('slidechanged', onSlideChanged);
         $.addEventListener('transitionend', onSlideTransitionEnd);
@@ -57,6 +72,11 @@
         }
     }
 
+    /**
+     * Handles clouds triggering.
+     *
+     * @constructor
+     */
     function Clouds($)
     {
         let clouds = document.getElementById('clouds');
@@ -86,6 +106,11 @@
         }
     }
 
+    /**
+     * Handles sun triggering.
+     *
+     * @constructor
+     */
     function Sun($)
     {
         $.addEventListener('slidechanged', onSlideChanged);

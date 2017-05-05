@@ -5,9 +5,35 @@ ul.acronym
 
 ul.acronym li::first-letter
 {
-    font-weight: 700;
+    font-weight: bolder;
 }
 
 abbr {
     text-decoration: none;
+}
+
+.reveal section figure.jasper-logo {
+    margin-left: calc(100% - 9em);
+    height: 7em;
+    width: 7em;
+    float: right;
+    margin-top: -4em;
+}
+
+.reveal section figure.jasper-logo img {
+    border: none;
+    border-radius: 100%;
+    animation-name: warp-in;
+    animation-duration: 1.5s;
+}
+
+.reveal section.future figure.jasper-logo img {
+    display: none;
+}
+
+@keyframes warp-in {
+    0%   { transform: rotate(-360deg); height: 0; width: 0; margin-top: 50%; }
+    60%  { transform: rotate(30deg); height: 100%; width: 100%; margin-top: 15px; }
+    80%  { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
 }
