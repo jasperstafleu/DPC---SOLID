@@ -70,7 +70,7 @@
         <section>
             <header>
                 <h2>SOLID</h2>
-                <small><abbr title="Yet another acronym">YAA</abbr>: Yet another acronym</small>
+                <small><abbr title="Yet another acronym">YAA</abbr> (Yet another acronym)</small>
             </header>
             <article>
                 <ul class="acronym">
@@ -152,11 +152,44 @@
                         <small>Keep your promises!</small>
                     </header>
                 </article>
+                <aside class="speaker-notes">
+                    <ul>
+                        <li>Named after Barbara Liskov</li>
+                        <li>Strong behavioural subtyping</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <header>
+                    <h3>Definition</h3>
+                    <small>Huh?</small>
+                </header>
+                <article>
+                    <q>
+                        Let <strong>φ(x)</strong> be a property provable about objects <strong>x</strong> of type <strong>T</strong>.
+                        <br/>
+                        Then <strong>φ(y)</strong> should be true for objects <strong>y</strong> of type <strong>S</strong>
+                        where <strong>S</strong> is a subtype of <strong>T</strong>.
+                        <sup><a href="#/further-reading">[1]</a></sup>
+                    </q>
+                </article>
+                <aside class="speaker-notes">
+                    <ul>
+                        <li>Mathspeak is fun! But, regrettably, its implications are not easily understood.</li>
+                        <li>Show of hands: who gets it now?</li>
+                        <li>
+                            Any class should be allowed to be replaced with an instance of a subtype of that class
+                            without altering the correctness of the program.
+                        </li>
+                    </ul>
+                </aside>
             </section>
 
             <section>
                 <header>
                     <h3>Example</h3>
+                    <small>Oh, so it is actually trivial!</small>
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
@@ -174,12 +207,12 @@ class Origami
 {
     /**
      * Magically transforms a piece of paper into a
-     * jumbo jet
+     * jumbo jet.
      *
      * @param Paper $paper
      * @return JumboJet
      */
-    <mark class="fragment">public function makeAirplane(Paper $paper)</mark>
+    public function makeAirplane(Paper $paper)
     {
         // ...
     }
@@ -188,6 +221,51 @@ class Origami
 (new Origami)->makeAirplane(new Cardboard);
                     </code></pre>
                 </article>
+                <aside class="speaker-notes">
+                    <ul>
+                        <li>Cardboard can be used </li>
+                        <li>But remember: it should behave the same! So it is not this simple</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <header>
+                    <h3>?</h3>
+                    <small>Hmmm, harder than I thought</small>
+                </header>
+                <article>
+                    <pre><code class="php" data-trim data-noescape>
+class Paper
+{
+    public function fold()
+    {
+        $this->area = $this->area / 2;
+    }
+}
+
+class Cardboard extends Paper
+{
+    public function fold()
+    {
+        throw new CanNotFoldException("I break when I fold");
+    }
+}
+
+class Origami
+{
+    public function makeAirplane(Paper $paper)
+    {
+        $paper->fold();
+    }
+}
+                    </code></pre>
+                </article>
+                <aside class="speaker-notes">
+                    <ul>
+                        <li>Now, cardboard can't be used!</li>
+                    </ul>
+                </aside>
             </section>
 
             <section>
@@ -238,13 +316,31 @@ class Origami
                 </article>
             </section>
 
+            <section id="further-reading">
+                <header>
+                    <h3>Further reading</h3>
+                    <small></small>
+                </header>
+                <article>
+                    <ol class="references">
+                        <li>Liskov, B. H.; Wing, J. M. (1994). A behavioral notion of subtyping. ACM Trans. Program. Lang. Syst. 16 (6). pp. 1811–1841. doi:10.1145/197320.197383.</li>
+                        <li><a href="http://blog.developers.nl/">http://blog.developers.nl/</a></li>
+                    </ol>
+                </article>
+            </section>
+
             <section>
                 <header>
                     <h3>Joind.In</h3>
-                    <small>Remember: Act as if I care</small>
+                    <small>Note to self: Act as if I care</small>
                 </header>
                 <article>
-                    <a href="?">Room for joind.in link...</a>
+                    <figure>
+                        <img src="assets/joindin-qrcode.png" style="width: 25vw; max-width: 50vh; height: 25vw; max-height: 50vh;"/>
+                        <figcaption>
+                            <a href="https://joind.in/talk/aae1f">https://joind.in/talk/aae1f</a>
+                        </figcaption>
+                    </figure>
                 </article>
             </section>
         </section>
