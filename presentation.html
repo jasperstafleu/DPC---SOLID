@@ -144,6 +144,7 @@
             </aside>
         </section>
 
+        <!-- LSP -->
         <section>
             <section class="with-clouds">
                 <article>
@@ -171,7 +172,7 @@
                         <br/>
                         Then <strong>φ(y)</strong> should be true for objects <strong>y</strong> of type <strong>S</strong>
                         where <strong>S</strong> is a subtype of <strong>T</strong>.
-                        <sup><a href="#/further-reading">[1]</a></sup>
+                        <sup><a href="#further-reading">[1]</a></sup>
                     </q>
                 </article>
                 <aside class="speaker-notes">
@@ -193,16 +194,6 @@
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
-class Paper
-{
-    // ...
-}
-
-class Cardboard extends Paper
-{
-    // ...
-}
-
 class Origami
 {
     /**
@@ -218,6 +209,16 @@ class Origami
     }
 }
 
+class Paper
+{
+    // ...
+}
+
+class Cardboard extends Paper
+{
+    // ...
+}
+
 (new Origami)->makeAirplane(new Cardboard);
                     </code></pre>
                 </article>
@@ -231,27 +232,11 @@ class Origami
 
             <section>
                 <header>
-                    <h3>?</h3>
-                    <small>Hmmm, harder than I thought</small>
+                    <h3>Exceptions</h3>
+                    <small>Hmmm, not as trivial as it looks</small>
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
-class Paper
-{
-    public function fold()
-    {
-        $this->area = $this->area / 2;
-    }
-}
-
-class Cardboard extends Paper
-{
-    public function fold()
-    {
-        throw new CanNotFoldException("I break when I fold");
-    }
-}
-
 class Origami
 {
     public function makeAirplane(Paper $paper)
@@ -259,32 +244,154 @@ class Origami
         $paper->fold();
     }
 }
+
+class Paper
+{
+    /**
+     * Folds the paper in two.
+     */
+    public function fold()
+    {
+        $this->area /= 2;
+    }
+}
+
+class Cardboard extends Paper
+{
+    public function fold()
+    {
+        throw new CanNotFoldException(
+            "I break when I fold"
+        );
+    }
+}
                     </code></pre>
                 </article>
                 <aside class="speaker-notes">
                     <ul>
                         <li>Now, cardboard can't be used!</li>
+                        <li>@throws CanNotFoldException in Paper::fold</li>
+                        <li>of: @throws \Exception</li>
+                        <li>Preservation of supertype's invariants</li>
                     </ul>
                 </aside>
             </section>
 
             <section>
                 <header>
-                    <h3></h3>
-                    <small></small>
+                    <h3><span style="font-size: 90%">Strengthening Preconditions</span></h3>
+                    <small>Warning: Argumentative</small>
                 </header>
                 <article>
-                    ?
+                    <pre><code class="php" data-trim data-noescape>
+interface IPropulsion {};
+class JetEngine implements IPropulsion{};
+
+class Paper
+{
+    public function finalize(IPropulsion $propulsion)
+    {
+        // ...
+    }
+}
+
+class Origami
+{
+    public function makeAirplane(Paper $paper)
+    {
+        $paper->finalize(new JetEngine);
+    }
+}
+<span class="fragment">
+class Propellor implements IPropulsion{};
+
+class Papyrus extends Paper
+{
+    public function finalize(Propellor $propulsion)
+    {
+        // ...
+    }
+}
+</span>
+
+                    </code></pre>
                 </article>
                 <aside class="speaker-notes">
                     <ul>
-                        <li>RabbitMQ and atomicity in single queue</li>
+                        <li>I'm just being more strict than its parent class</li>
+                        <li>Thankfully, throws a warning</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <header>
+                    <h3><span style="font-size: 90%">Strengthening Preconditions</span></h3>
+                    <small>Warning: Argumentative</small>
+                </header>
+                <article>
+                    <pre><code class="php" data-trim data-noescape>
+                    </code></pre>
+                </article>
+                <aside class="speaker-notes">
+                    <ul>
+                        <li>I'm just being more strict than its parent class</li>
+                        <li>Thankfully, throws a warning</li>
+                    </ul>
+                </aside>
+            </section>
+
+
+
+
+            <section>
+                <header>
+                    <h3>Post-conditions</h3>
+                    <small></small>
+                </header>
+                <article>
+                    <pre><code class="php" data-trim data-noescape>
+                    </code></pre>
+                </article>
+            </section>
+
+            <section>
+                <header>
+                    <h3>History Constraint</h3>
+                    <small></small>
+                </header>
+                <article>
+                    <pre><code class="php" data-trim data-noescape>
+                    </code></pre>
+                </article>
+            </section>
+
+            <section>
+                <header>
+                    <h3>Protocols</h3>
+                    <small>Code isn't everything</small>
+                </header>
+                <article>
+                    <h5 style="text-align: left">Atomicity in single queue</h5>
+                    <ul>
+                        <li>AMQP: yes</li>
+                        <li class="fragment">RabbitMQ: no</li>
+                    </ul>
+                </article>
+                <aside class="speaker-notes">
+                    <ul>
+                        <li>Browser compatibility?</li>
                     </ul>
                 </aside>
             </section>
         </section>
 
 
+
+
+
+
+        <!-- DIP -->
         <section>
             <section class="with-clouds">
                 <article>
@@ -297,15 +404,17 @@ class Origami
 
             <section>
                 <header>
-                    <h3>Other stuff</h3>
+                    <h3>Abstract classes</h3>
+                    <small>Extends is evil</small>
                 </header>
                 <article>
-                    Text
+                    <pre><code class="php" data-trim data-noescape>
+                    </code></pre>
                 </article>
             </section>
         </section>
 
-
+        <!-- WRAP UP -->
         <section>
             <section class="with-clouds">
                 <article>
@@ -324,6 +433,7 @@ class Origami
                 <article>
                     <ol class="references">
                         <li>Liskov, B. H.; Wing, J. M. (1994). A behavioral notion of subtyping. ACM Trans. Program. Lang. Syst. 16 (6). pp. 1811–1841. doi:10.1145/197320.197383.</li>
+                        <li><a href="https://www.rabbitmq.com/semantics.html">https://www.rabbitmq.com/semantics.html</a></li>
                         <li><a href="http://blog.developers.nl/">http://blog.developers.nl/</a></li>
                     </ol>
                 </article>
@@ -377,9 +487,10 @@ class Origami
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true },
+//            { src: 'theme/js/reveal-mouseclick-nav.js', async: true},
+            { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true},
             { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true}
+            { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true }
         ]
     });
 </script>
