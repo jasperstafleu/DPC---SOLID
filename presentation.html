@@ -5,13 +5,13 @@
     <title>Several years of SOLID development - DPC 2017</title>
 
     <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="node_modules/reveal.js/css/theme/simple.css">
+    <!--<link rel="stylesheet" href="node_modules/reveal.js/css/theme/simple.css">-->
     <link rel="stylesheet" href="theme/css/developers.nl.css">
     <link rel="stylesheet" href="node_modules/highlight.js/styles/github.css">
 
     <link rel="stylesheet" href="assets/style.css">
 
-    <link href='http://fonts.googleapis.com/css?family=Roboto%20Mono' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.googleapis.com/css?family=Roboto%20Mono' rel='stylesheet' type='text/css'>-->
 </head>
 <body>
 <div class="reveal large-sun">
@@ -43,7 +43,7 @@
                 <ul style="line-height: 1.3;">
                     <li>Jasper Stafleu</li>
                     <li>MSc Computer Science</li>
-                    <li>
+                    <li style="margin-top: 1em;">
                         Developers.nl
                         <ul>
                             <li>
@@ -84,7 +84,9 @@
             <aside class="notes">
                 <ul>
                     <li>SOLID is about behavior, not coding per se</li>
-                    <li>Reusability and maintainability of code</li>
+                    <li>Object Oriented Design => actually any Component based system</li>
+                    <li>Reusability (unit tests) and maintainability of code</li>
+                    <li>Object oriented design is subservient to SOLID, not the other way around</li>
                 </ul>
             </aside>
         </section>
@@ -137,6 +139,8 @@
                     <li>PHP: Often a problem
                         <ul>
                             <li>Doctrine Query object</li>
+                            <li>Final Keyword</li>
+                            <li>Private vs Protected</li>
                             <li>NewRelic automagic symfony2 interpretation</li>
                         </ul>
                     </li>
@@ -214,17 +218,17 @@ class Paper
     // ...
 }
 
-class Cardboard extends Paper
+class Papyrus extends Paper
 {
     // ...
 }
 
-(new Origami)->makeAirplane(new Cardboard);
+(new Origami)->makeAirplane(new Papyrus);
                     </code></pre>
                 </article>
                 <aside class="speaker-notes">
                     <ul>
-                        <li>Cardboard can be used </li>
+                        <li>Papyrus can be used </li>
                         <li>But remember: it should behave the same! So it is not this simple</li>
                     </ul>
                 </aside>
@@ -256,7 +260,7 @@ class Paper
     }
 }
 
-class Cardboard extends Paper
+class Papyrus extends Paper
 {
     public function fold()
     {
@@ -269,7 +273,7 @@ class Cardboard extends Paper
                 </article>
                 <aside class="speaker-notes">
                     <ul>
-                        <li>Now, cardboard can't be used!</li>
+                        <li>Now, Papyrus can't be used!</li>
                         <li>@throws CanNotFoldException in Paper::fold</li>
                         <li>of: @throws \Exception</li>
                         <li>Preservation of supertype's invariants</li>
@@ -279,17 +283,17 @@ class Cardboard extends Paper
 
             <section>
                 <header>
-                    <h3><span style="font-size: 90%">Strengthening Preconditions</span></h3>
+                    <h3><span style="font-size: 85%">Strengthening Preconditions</span></h3>
                     <small>Warning: Argumentative</small>
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
-interface IPropulsion {};
-class JetEngine implements IPropulsion{};
+interface IEngine {}
+class JetEngine implements IEngine {}
 
-class Paper
+class JumboJet
 {
-    public function finalize(IPropulsion $propulsion)
+    public function addEngine(IEngine $engine)
     {
         // ...
     }
@@ -299,21 +303,21 @@ class Origami
 {
     public function makeAirplane(Paper $paper)
     {
-        $paper->finalize(new JetEngine);
+        // Turn $paper into JumboJet somehow
+        $airplane->addEngine(new JetEngine);
     }
 }
-<span class="fragment">
-class Propellor implements IPropulsion{};
+                    </code></pre>
+                    <pre class="fragment"><code class="php" data-trim data-noescape>
+class Propellor implements IEngine {}
 
-class Papyrus extends Paper
+class Triplane extends JumboJet
 {
-    public function finalize(Propellor $propulsion)
+    public function addEngine(Propellor $engine)
     {
         // ...
     }
 }
-</span>
-
                     </code></pre>
                 </article>
                 <aside class="speaker-notes">
@@ -326,17 +330,36 @@ class Papyrus extends Paper
 
             <section>
                 <header>
-                    <h3><span style="font-size: 90%">Strengthening Preconditions</span></h3>
-                    <small>Warning: Argumentative</small>
+                    <h3><span style="font-size: 85%">Strengthening Preconditions</span></h3>
+                    <small>We have a problem</small>
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
+interface IEngine
+{
+    /**
+     * @return int  The engine's max speed in m/s.
+     */
+    public function getMaxSpeed();
+}
+
+class SpaceShuttle extends JumboJet
+{
+    public function addEngine(IEngine $engine)
+    {
+        if ($engine->getMaxSpeed() < 11200) {
+            throw new InvalidEngineException(
+                "Please ensure the engine is " .
+                "faster than escape velocity"
+            );
+        }
+        // ...
+    }
+}
                     </code></pre>
                 </article>
                 <aside class="speaker-notes">
                     <ul>
-                        <li>I'm just being more strict than its parent class</li>
-                        <li>Thankfully, throws a warning</li>
                     </ul>
                 </aside>
             </section>
@@ -346,11 +369,38 @@ class Papyrus extends Paper
 
             <section>
                 <header>
-                    <h3>Post-conditions</h3>
+                    <h3><span style="font-size: 85%">Weakening Postconditions</span></h3>
                     <small></small>
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
+class SlingShotPropelledShuttle extends SpaceShuttle
+{
+    public function addEngine(IEngine $engine)
+    {
+        if ($engine->getMaxSpeed() < 11200) {
+            $this->setSelfPropelled(false);
+        }
+
+        // ...
+    }
+}
+                    </code></pre>
+                    <pre class="fragment"><code class="php" data-trim data-noescape>
+class Launcher
+{
+    /**
+     * Increases the $shuttle's engine's speed until
+     * escape velocity has been reached.
+     */
+    public function escapeWorld(SpaceShuttle $shuttle)
+    {
+        $engine = $shuttle->getEngine();
+        while ($shuttle->getSpeed() < 11200) {
+            $engine->goFaster();
+        }
+    }
+}
                     </code></pre>
                 </article>
             </section>
@@ -362,6 +412,28 @@ class Papyrus extends Paper
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
+class SpaceShuttle
+{
+    public function launch(
+        SpaceTimeCoordinates $destination
+    ) {
+        // Validate spaceshuttle not already launched
+
+        $this->destination = $destination;
+
+        $shuttle->launch();
+    }
+}
+                    </code></pre>
+                    <pre class="fragment"><code class="php" data-trim data-noescape>
+class LawsOfNatureDefyingShuttle extends SpaceShuttle
+{
+    public function changeDestination(
+        SpaceTimeCoordinates $destination
+    ) {
+        $this->destination = $destination;
+    }
+}
                     </code></pre>
                 </article>
             </section>
