@@ -1,10 +1,8 @@
-ul.acronym
-{
+ul.acronym {
     list-style-type: none;
 }
 
-ul.acronym li::first-letter
-{
+ul.acronym li::first-letter {
     font-weight: bolder;
 }
 
@@ -35,4 +33,38 @@ abbr {
     60%  { transform: rotate(30deg); height: 100%; width: 100%; margin-top: 15px; }
     80%  { transform: rotate(-10deg); }
     100% { transform: rotate(0deg); }
+}
+
+/** TRIPLANE **/
+
+.triplane {
+    position: fixed;
+    z-index: 101;
+
+    opacity: 0 !important;
+
+    width: 5em;
+    height: 3.17em;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.triplane.visible {
+    animation-name: fly-around;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+}
+
+@keyframes fly-around {
+    0%      { left: -5em;}
+    10%     { opacity: .5; bottom: 10vh; left: -5em; background-image: url(cartoon-triplane.png);}
+    50%     { bottom: 20vh; left: calc((50vw - 4em)*.8); transform: rotate(0deg); }
+    60%     { bottom: 33vh; left: calc(50vw - 4em); transform: rotate(-90deg);}
+    80%     { opacity: .5; bottom: -5em; left: 25vw; transform: rotate(-250deg); background-image: url(cartoon-triplane.png); }
+    81%     { opacity: 0; transform: rotate(0deg); bottom: -5em; left: calc(25vw + 1em) }
+    82%     { background-image: url(explosion.png); bottom: -1em; opacity: 0; }
+    91%     { opacity: .5; }
+    100%    { opacity: 0; bottom: -1em; left: calc(25vw + 1em); background-image: url(explosion.png); }
 }

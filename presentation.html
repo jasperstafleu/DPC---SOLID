@@ -296,6 +296,7 @@ class Papyrus extends Paper
                     <small>Warning: Argumentative</small>
                 </header>
                 <article>
+                    <div class="triplane fragment" data-fragment-index="1"></div>
                     <pre><code class="php" data-trim data-noescape>
 interface IEngine {}
 class JetEngine implements IEngine {}
@@ -317,7 +318,8 @@ class Origami
     }
 }
                     </code></pre>
-                    <pre class="fragment"><code class="php" data-trim data-noescape>
+
+                    <pre class="fragment" data-fragment-index="1"><code class="php" data-trim data-noescape>
 class Propellor implements IEngine {}
 
 class Triplane extends JumboJet
@@ -369,6 +371,7 @@ class SpaceShuttle extends JumboJet
                 </article>
                 <aside class="notes">
                     <ul>
+                        <li>Engines do not have speed!</li>
                     </ul>
                 </aside>
             </section>
@@ -416,35 +419,32 @@ class Launcher
 
             <section>
                 <header>
-                    <h3>History Constraint</h3>
-                    <small></small>
+                    <h3><span style="font-size: 85%">History Constraint</span></h3>
+                    <small>Feel free to panic on spotting new clouds on the horizon</small>
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
-class SpaceShuttle
+class SolarPoweredEngine extends JetEngine
 {
-    public function launch(
-        SpaceTimeCoordinates $destination
-    ) {
-        // Validate spaceshuttle not already launched
-
-        $this->destination = $destination;
-
-        $shuttle->launch();
-    }
-}
-                    </code></pre>
-                    <pre class="fragment"><code class="php" data-trim data-noescape>
-class LawsOfNatureDefyingShuttle extends SpaceShuttle
-{
-    public function changeDestination(
-        SpaceTimeCoordinates $destination
-    ) {
-        $this->destination = $destination;
-    }
-}
+    /**
+     * Call this method whenever the solar intensity
+     * changes.
+     */
+    public function setSolarIntensity(int $level)
+    {
+        $this->maxSpeed =
+            $level * $this->levelToSpeedMultiplier;
+     }
+ }
                     </code></pre>
                 </article>
+                <aside class="notes">
+                    <ul>
+                        <li>Even more insidious: it breaks an expectation given by the interface itself.</li>
+                        <li>Can be prevented by using `private`, but see Open/Closed</li>
+                        <li>Advice: use immutable objects</li>
+                    </ul>
+                </aside>
             </section>
 
             <section>
@@ -465,6 +465,29 @@ class LawsOfNatureDefyingShuttle extends SpaceShuttle
                     </ul>
                 </aside>
             </section>
+
+            <section class="with-clouds">
+                <article>
+                    <header>
+                        <h3>Liskov Summary</h3>
+                        <small>Don't break it, unless you like swarms of bugs biting you</small>
+                    </header>
+                </article>
+                <aside class="notes">
+                    <ul>
+                        <li>Lots of bugs may appear if extensions don't act as their parent.</li>
+                        <li>Hard to find these bugs through testing.</li>
+                        <li>How to solve LSP breakage?
+                            <ul>
+                                <li>Just don't do it.</li>
+                                <li>Only extend if you are absolutely sure both are the same.</li>
+                                <li>Traits are nice, but might have the same issues.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+
         </section>
 
 
