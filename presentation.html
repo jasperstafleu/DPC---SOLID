@@ -5,13 +5,12 @@
     <title>Several years of SOLID development - DPC 2017</title>
 
     <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
-    <!--<link rel="stylesheet" href="node_modules/reveal.js/css/theme/simple.css">-->
     <link rel="stylesheet" href="theme/css/developers.nl.css">
     <link rel="stylesheet" href="node_modules/highlight.js/styles/github.css">
 
     <link rel="stylesheet" href="assets/style.css">
 
-    <!--<link href='http://fonts.googleapis.com/css?family=Roboto%20Mono' rel='stylesheet' type='text/css'>-->
+    <link href='http://fonts.googleapis.com/css?family=Roboto%20Mono' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div class="reveal large-sun">
@@ -101,7 +100,12 @@
             <aside class="notes">
                 <ul>
                     <li>Responsibility goes two ways!!!</li>
-                    <li>PHP: Mostly done OK, easy to spot if not</li>
+                    <li>PHP:
+                        <ul>
+                            <li>Mostly done OK, easy to spot if not</li>
+                            <li>Low hanging fruit</li>
+                        </ul>
+                    </li>
                 </ul>
             </aside>
         </section>
@@ -116,7 +120,12 @@
             <aside class="notes">
                 <ul>
                     <li>Single responsibility for interfaces</li>
-                    <li>PHP: Rarely done right</li>
+                    <li>PHP:
+                        <ul>
+                            <li>Rarely done right</li>
+                            <li>Multiple interface inheritance / implementation makes this easy to do</li>
+                        </ul>
+                    </li>
                 </ul>
             </aside>
         </section>
@@ -128,7 +137,7 @@
                     <small>Don’t touch me!<br/> Let’s make kids instead</small>
                 </header>
             </article>
-            <aside class="speaker-notes">
+            <aside class="notes">
                 <b>Closed</b>
                 <ul>
                     <li>PHP: Used to be a problem, until the rise of composer</li>
@@ -157,7 +166,7 @@
                         <small>Keep your promises!</small>
                     </header>
                 </article>
-                <aside class="speaker-notes">
+                <aside class="notes">
                     <ul>
                         <li>Named after Barbara Liskov</li>
                         <li>Strong behavioural subtyping</li>
@@ -179,7 +188,7 @@
                         <sup><a href="#further-reading">[1]</a></sup>
                     </q>
                 </article>
-                <aside class="speaker-notes">
+                <aside class="notes">
                     <ul>
                         <li>Mathspeak is fun! But, regrettably, its implications are not easily understood.</li>
                         <li>Show of hands: who gets it now?</li>
@@ -226,7 +235,7 @@ class Papyrus extends Paper
 (new Origami)->makeAirplane(new Papyrus);
                     </code></pre>
                 </article>
-                <aside class="speaker-notes">
+                <aside class="notes">
                     <ul>
                         <li>Papyrus can be used </li>
                         <li>But remember: it should behave the same! So it is not this simple</li>
@@ -271,7 +280,7 @@ class Papyrus extends Paper
 }
                     </code></pre>
                 </article>
-                <aside class="speaker-notes">
+                <aside class="notes">
                     <ul>
                         <li>Now, Papyrus can't be used!</li>
                         <li>@throws CanNotFoldException in Paper::fold</li>
@@ -320,7 +329,7 @@ class Triplane extends JumboJet
 }
                     </code></pre>
                 </article>
-                <aside class="speaker-notes">
+                <aside class="notes">
                     <ul>
                         <li>I'm just being more strict than its parent class</li>
                         <li>Thankfully, throws a warning</li>
@@ -358,7 +367,7 @@ class SpaceShuttle extends JumboJet
 }
                     </code></pre>
                 </article>
-                <aside class="speaker-notes">
+                <aside class="notes">
                     <ul>
                     </ul>
                 </aside>
@@ -450,7 +459,7 @@ class LawsOfNatureDefyingShuttle extends SpaceShuttle
                         <li class="fragment">RabbitMQ: no</li>
                     </ul>
                 </article>
-                <aside class="speaker-notes">
+                <aside class="notes">
                     <ul>
                         <li>Browser compatibility?</li>
                     </ul>
@@ -544,12 +553,12 @@ class LawsOfNatureDefyingShuttle extends SpaceShuttle
         embedded: false,
         backgroundTransition: 'none',
         mouseWheel: false,
-//        transition: 'none', // none/fade/slide/convex/concave/zoom
-//        transition: 'fade', // none/fade/slide/convex/concave/zoom
-//        transition: 'slide', // none/fade/slide/convex/concave/zoom
-//        transition: 'convex', // none/fade/slide/convex/concave/zoom
-//        transition: 'concave', // none/fade/slide/convex/concave/zoom
-        transition: 'zoom', // none/fade/slide/convex/concave/zoom
+//        transition: 'none',
+//        transition: 'fade',
+//        transition: 'slide',
+//        transition: 'convex',
+//        transition: 'concave',
+        transition: 'zoom',
 
         zoomKey: 'ctrl',
 
