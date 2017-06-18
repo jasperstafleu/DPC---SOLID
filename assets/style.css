@@ -35,36 +35,57 @@ abbr {
     100% { transform: rotate(0deg); }
 }
 
-/** TRIPLANE **/
-
+/*** TRIPLANE ***/
 .triplane {
     position: fixed;
     z-index: 101;
-
-    opacity: 0 !important;
+    bottom: 0;
 
     width: 5em;
     height: 3.17em;
-    background-repeat: no-repeat;
+
+    opacity: 0 !important;
+    background: none no-repeat 0 -50%;
+    background-size: 100% auto;
+}
+
+.triplane::after {
+    content: "";
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    background: url(cartoon-triplane.png) no-repeat;
     background-size: 100% auto;
 }
 
 .triplane.visible {
-    animation-name: fly-around;
-    animation-duration: 5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-delay: 1s;
+    animation: fly-around-x 5s ease-out 1s 5;
 }
 
-@keyframes fly-around {
-    0%      { left: -5em;}
-    10%     { opacity: .5; bottom: 10vh; left: -5em; background-image: url(cartoon-triplane.png);}
-    50%     { bottom: 20vh; left: calc((50vw - 4em)*.8); transform: rotate(0deg); }
-    60%     { bottom: 33vh; left: calc(50vw - 4em); transform: rotate(-90deg);}
-    80%     { opacity: .5; bottom: -5em; left: 25vw; transform: rotate(-250deg); background-image: url(cartoon-triplane.png); }
-    81%     { opacity: 0; transform: rotate(0deg); bottom: -5em; left: calc(25vw + 1em) }
-    82%     { background-image: url(explosion.png); bottom: -1em; opacity: 0; }
-    91%     { opacity: .5; }
-    100%    { opacity: 0; bottom: -1em; left: calc(25vw + 1em); background-image: url(explosion.png); }
+.triplane.visible::after {
+    animation: inherit;
+    animation-name: fly-around-y;
+    animation-timing-function: cubic-bezier(.75, .25, .75, .25);
+}
+
+@keyframes fly-around-x {
+    0%      { left: -5em; opacity: .5; }
+    50%     { left: calc(50vw - 4em);  }
+    60%     { left: calc(50vw - 4em); animation-timing-function: linear; }
+    80%     { left: 25vw; opacity: .5; }
+    80.1%   { opacity: 0; background-image: none;}
+    80.2%   { opacity: 0; background-image: url(explosion.png); }
+    90%     { opacity: .5; }
+    99.9%   { opacity: 0; background-image: url(explosion.png); }
+    100%    { opacity: 0; background-image: none; left: 25vw; }
+}
+
+@keyframes fly-around-y {
+    0%      { bottom: 0; }
+    50%     { bottom: 33vh; transform: rotate(-90deg); animation-timing-function: ease-out; }
+    60%     { bottom: 40vh; transform: rotate(-90deg); }
+    80%     { bottom: -5em; transform: rotate(-270deg); animation-timing-function: ease-in; }
+    100%    { bottom: -5em; }
 }

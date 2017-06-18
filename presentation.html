@@ -435,7 +435,7 @@ class SolarPoweredEngine extends JetEngine
         $this->maxSpeed =
             $level * $this->levelToSpeedMultiplier;
      }
- }
+}
                     </code></pre>
                 </article>
                 <aside class="notes">
@@ -456,12 +456,13 @@ class SolarPoweredEngine extends JetEngine
                     <h5 style="text-align: left">Atomicity in single queue</h5>
                     <ul>
                         <li>AMQP: yes</li>
-                        <li class="fragment">RabbitMQ: no</li>
+                        <li class="fragment" data-fragment-index="1">RabbitMQ: no</li>
                     </ul>
                 </article>
                 <aside class="notes">
                     <ul>
                         <li>Browser compatibility?</li>
+                        <li>WSA (web service addressing) and SOAP (SOAPAction header)</li>
                     </ul>
                 </aside>
             </section>
@@ -508,13 +509,102 @@ class SolarPoweredEngine extends JetEngine
 
             <section>
                 <header>
-                    <h3>Abstract classes</h3>
+                    <h3>Tight coupling</h3>
                     <small>Extends is evil</small>
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
+class Origami
+{
+    /**
+     * Magically transforms a piece of paper into a
+     * jumbo jet.
+     *
+     * @return JumboJet
+     */
+    public function makeAirplane()
+    {
+        $paper = new Paper;
+
+        // ...
+    }
+}
                     </code></pre>
                 </article>
+                <aside class="notes">
+                    <ul>
+                        <li>Schoolbook example.</li>
+                        <li>Reusability = 0, Unit testing inherently impossible</li>
+                        <li>Tight coupling</li>
+                        <li>Abstractions should not depend on details. Details should depend on abstractions.</li>
+                        <li>PHP `abstract` !== DIP abstract; levels of abstraction</li>
+                        <li>Origami needs Paper, so it is at a higher abstraction level</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <header>
+                    <h3>Abstract classes</h3>
+                    <small>What the hell is a partial abstraction?</small>
+                </header>
+                <article>
+                    <pre><code class="php" data-trim data-noescape>
+abstract class AirplaneFactory
+{
+    public function makeAirplane(Paper $paper)
+    {
+        $jumboJet = $this->paperToAirplane($paper);
+        $this->addEngine($jumboJet);
+
+        return $jumboJet;
+    }
+
+    protected function paperToAirplane();
+
+    private function addEngine(JumboJet $jumboJet)
+    {
+        // ...
+    }
+}
+
+class Origami extends AirplaneFactory
+{
+    protected function paperToAirplane()
+    {
+        // ...
+    }
+}
+
+                    </code></pre>
+                </article>
+                <aside class="notes">
+                    <ul>
+                        <li>Detailed method `makeAirplane` depends on abstract method `paperToAirplane`</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section class="with-clouds">
+                <article>
+                    <header>
+                        <h3>Dependency Inversion Summary</h3>
+                        <small></small>
+                    </header>
+                </article>
+                <aside class="notes">
+                    <ul>
+                        <li>Lots of bugs may appear if extensions don't act as their parent.</li>
+                        <li>Hard to find these bugs through testing.</li>
+                        <li>How to solve LSP breakage?
+                            <ul>
+                                <li>Just don't do it.</li>
+                                <li>Only extend if you are absolutely sure both are the same.</li>
+                                <li>Traits are nice, but might have the same issues.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
             </section>
         </section>
 
