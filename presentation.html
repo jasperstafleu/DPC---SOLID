@@ -15,10 +15,7 @@
 <body>
 <div class="reveal large-sun">
     <div id="white-pane" style="display: none;"></div>
-    <div id="clouds">
-        <div class="cloud-1"></div>
-        <div class="cloud-2"></div>
-    </div>
+    <div id="clouds"></div>
 
     <div class="slides">
         <section class="first-slide with-clouds">
@@ -456,7 +453,7 @@ class SolarPoweredEngine extends JetEngine
                     <h5 style="text-align: left">Atomicity in single queue</h5>
                     <ul>
                         <li>AMQP: yes</li>
-                        <li class="fragment" data-fragment-index="1">RabbitMQ: no</li>
+                        <li class="fragment" data-fragment-index="1">RabbitMQ: no<sup><a href="#further-reading">[2]</a></sup></li>
                     </ul>
                 </article>
                 <aside class="notes">
@@ -546,7 +543,7 @@ class Origami
             <section>
                 <header>
                     <h3>Abstract classes</h3>
-                    <small>What the hell is a partial abstraction?</small>
+                    <small>Abstract not abstract enough?</small>
                 </header>
                 <article>
                     <pre><code class="php" data-trim data-noescape>
@@ -594,13 +591,11 @@ class Origami extends AirplaneFactory
                 </article>
                 <aside class="notes">
                     <ul>
-                        <li>Lots of bugs may appear if extensions don't act as their parent.</li>
-                        <li>Hard to find these bugs through testing.</li>
-                        <li>How to solve LSP breakage?
+                        <li>Makes reusability harder</li>
+                        <li>How to solve DIP breakage?
                             <ul>
-                                <li>Just don't do it.</li>
-                                <li>Only extend if you are absolutely sure both are the same.</li>
-                                <li>Traits are nice, but might have the same issues.</li>
+                                <li>Use Interfaces</li>
+                                <li>Avoid abstract classes, use traits instead</li>
                             </ul>
                         </li>
                     </ul>
@@ -655,7 +650,7 @@ class Origami extends AirplaneFactory
 <script src="node_modules/reveal.js/js/reveal.js"></script>
 <script src="theme/js/developers.nl.js"></script>
 
-<script>
+<script><!--
     // More info https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
         controls: false,
@@ -682,11 +677,11 @@ class Origami extends AirplaneFactory
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
 //            { src: 'theme/js/reveal-mouseclick-nav.js', async: true},
-            { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true},
+//            { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true},
             { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
             { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true }
         ]
     });
-</script>
+// --></script>
 </body>
 </html>
