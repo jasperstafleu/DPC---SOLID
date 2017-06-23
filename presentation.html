@@ -670,7 +670,6 @@ class Origami extends AirplaneFactory
         progress: false,
         slideNumber: false,
         history: true,
-        center: true,
         embedded: false,
         backgroundTransition: 'none',
         mouseWheel: false,
@@ -686,6 +685,8 @@ class Origami extends AirplaneFactory
         width: '100%',
         height: '100%',
         margin: 0,
+
+        keyboard: { 37: 'prev', 38: 'prev', 39: 'next', 40: 'next' }, // Overrides the default arrow navigation as it sucks.
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
